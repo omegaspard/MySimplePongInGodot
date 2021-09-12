@@ -1,14 +1,19 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://OpponentPlayer/OpponentPlayer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Ball/Ball.gd" type="Script" id=3]
 [ext_resource path="res://Ball/Ball.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Level/Level.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 642.691, 12.3638 )
 
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 106.19, 359.811 )
+
 [node name="Level" type="Node"]
+script = ExtResource( 5 )
 
 [node name="FontScreen" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -38,3 +43,18 @@ position = Vector2( 1170, 300 )
 [node name="Ball" parent="." instance=ExtResource( 4 )]
 position = Vector2( 598.008, 307.013 )
 script = ExtResource( 3 )
+
+[node name="ScoringAreaRight" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoringAreaRight"]
+position = Vector2( -110.803, 360.19 )
+shape = SubResource( 2 )
+
+[node name="ScoringAreaLeft" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoringAreaLeft"]
+position = Vector2( 1387.5, 354.197 )
+shape = SubResource( 2 )
+
+[connection signal="body_entered" from="ScoringAreaRight" to="." method="_on_ScoringAreaRight_body_entered"]
+[connection signal="body_entered" from="ScoringAreaLeft" to="." method="_on_ScoringAreaLeft_body_entered"]
