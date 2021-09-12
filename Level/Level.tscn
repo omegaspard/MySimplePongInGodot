@@ -6,7 +6,7 @@
 [ext_resource path="res://Ball/Ball.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Level/Level.gd" type="Script" id=5]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 642.691, 12.3638 )
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -23,37 +23,60 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="PlayerScore" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -200.0
+text = "0
+"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OpponentPlayerScore" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 200.0
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
 
 [node name="WallTop" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallTop"]
 position = Vector2( 637.341, -13.0803 )
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 
 [node name="WallBottom" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallBottom"]
 position = Vector2( 638.898, 732.856 )
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 
 [node name="OpponentPlayer" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1170, 300 )
 
 [node name="Ball" parent="." instance=ExtResource( 4 )]
-position = Vector2( 598.008, 307.013 )
+position = Vector2( 635.049, 286.809 )
 script = ExtResource( 3 )
 
 [node name="ScoringAreaRight" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScoringAreaRight"]
-position = Vector2( -110.803, 360.19 )
+position = Vector2( -106.803, 361.19 )
 shape = SubResource( 2 )
 
 [node name="ScoringAreaLeft" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScoringAreaLeft"]
-position = Vector2( 1387.5, 354.197 )
+position = Vector2( 1387.5, 360.197 )
 shape = SubResource( 2 )
 
 [connection signal="body_entered" from="ScoringAreaRight" to="." method="_on_ScoringAreaRight_body_entered"]
